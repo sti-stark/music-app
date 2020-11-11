@@ -1,17 +1,15 @@
 [
     {
         "title": "The well",
-        "artist":"Marcus King"
+        "artist": "Marcus King"
     },
-
     {
         "title": "Little Charmer",
-        "artist":"Frank Gambale"
+        "artist": "Frank Gambale"
     },
-
     {
         "title": "Cliffs Of Dover",
-        "artist":"Eric Johnson"
+        "artist": "Eric Johnson"
     }
-
+    
 ]

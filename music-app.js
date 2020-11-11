@@ -1,16 +1,18 @@
-const Music = {
+const {
     crearCancion,
     reedsong,
     editartist,
     removSong,
-    listSongs,
-    orderSongsByTitle
-}=require('./functions.js');
+    orderSongsByTitle,
+    writesongs,
+    leersong
+} = require('./functions');
 
 
-//orderSongsByTitle(Music);
-listSongs(Music);
-//removSong(Music,'Cliffs Of Dover');
-//editartist(Music,'Little Charmer','Elvis Presley');
-//reedsong(Music,'Cliffs Of Dove');
-//crearCancion(Music,'ACDC','Shot in the dark');
+//orderSongsByTitle(leersong); //?¿
+//console.log(leersong('./songs.json')); //OK
+//removSong('Cliffs Of Dover'); //OK
+//editartist('Little Charmer','Elvis Presley'); //OK
+//reedsong('Cliffs Of Dove'); //OK
+//crearCancion('ACDC','Shot in the dark'); //OK
+
