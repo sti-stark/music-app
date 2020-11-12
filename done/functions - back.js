@@ -1,44 +1,37 @@
-const fs = require('fs') //Ofrece la la propiedad de leer otros ficheros
 
-const leersong = (fichero)=>{ //Función para leer el archivo JSON
-    try{
-        const buffer = fs.readFileSync(fichero);
-        const datosString = buffer.toString();
-        return JSON.parse(datosString);
-    } catch (error) {
-        console.log(error);
-        return []
+const Music = [
+    {
+        title: 'The well',
+        artist:'Marcus King'
+    },
+
+    {
+        title: 'Little Charmer',
+        artist:'Frank Gambale'
+    },
+
+    {
+        title: 'Cliffs Of Dover',
+        artist:'Eric Johnson'
     }
-}
 
-const writesongs =(fichero,song)=>{ // Función para escribir en el archivo JSON
-    const textoJSON = JSON.stringify(song);
-    fs.writeFileSync(fichero,textoJSON);
-}
+]
 
 
-/**
- * Funciónes para interactuar con el archivo songs.json
-*/
-
-
-const crearCancion = (titleA,artistA)=>{
-    const music = leersong('songs.json');
+const crearCancion = (music,titleA,artistA)=>{
     const index = music.findIndex((song)=>{
         song.title === titleA
     })
 
     if(index === -1){
-        music.push({title:titleA ,artistA});
-        writesongs('songs.json',music);
+        music.push({title:titleA ,artistA})
         return console.log('Canción registrada');
     }else{
         console.log('Esta canción ya existe');
     }
 }
 
-const reedsong = (title)=>{
-    const music = leersong('songs.json')
+const reedsong = (music,title)=>{
     const findsong = music.find((song)=>{
         return song.title.includes(title)
     })
@@ -53,39 +46,39 @@ const reedsong = (title)=>{
 
 }
 
-const editartist = (title,newartist)=>{
-    const music = leersong('songs.json');
+const editartist = (music,title,newartist)=>{
     const findsong = music.findIndex((song)=>{
         return song.title.includes(title)
     })
 
     if(findsong > -1){
         music[findsong].artist = newartist;
-        writesongs('songs.json',music);
         return console.log('El artista ha sido modificado');
     }else{
         console.log('No se ha encontrado la canción');
     }
 }
 
-const removSong = (title)=>{
-    const music = leersong('songs.json');
+const removSong = (music,title)=>{
     const findsong = music.findIndex((song)=>{
         return song.title.includes(title);
     })
 
     if(findsong > -1){
-        music.splice(findsong,1);
-        writesongs('songs.json',music)
-     return console.log('Canción borrada');
+        console.log('Canción borrada');
+     return music.splice(findsong,1);
     }else{
     return console.log('La canción no se ha podido encontrar');
     }
 }
 
+const listSongs = (music)=>{
+    return music.forEach(element => {
+        console.log(element);
+    });
+}
 
-const orderSongsByTitle = (leersong)=>{
-    const music = leersong('songs.json')
+const orderSongsByTitle = (music)=>{
     return music.sort((songA,songB)=>{
         if(songA.title.toLowerCase() < songB.title.toLowerCase()){
             return -1
@@ -97,13 +90,22 @@ const orderSongsByTitle = (leersong)=>{
      });
 }
 
-/* Exportación de las funciones a music-app.js */
+
+
+//orderSongsByTitle(Music);
+//listSongs(Music);
+//removSong(Music,'Cliffs Of Dover');
+//editartist(Music,'Little Charmer','Elvis Presley');
+//reedsong(Music,'Cliffs Of Dove');
+//crearCancion(Music,'ACDC','Shot in the dark');
+
+
+
 module.exports = {
     crearCancion:crearCancion,
     reedsong:reedsong,
     editartist:editartist,
     removSong:removSong,
-    writesongs:writesongs,
-    leersong:leersong,
+    listSongs:listSongs,
     orderSongsByTitle:orderSongsByTitle
 }
